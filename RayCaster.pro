@@ -18,17 +18,23 @@ SOURCES += main.cpp\
     Cor.cpp \
     Janela.cpp \
     Material.cpp \
-    Matriz.cpp \
-    Vetor.cpp
+    Vetor.cpp \
+    RayCaster.cpp \
+    Raio.cpp \
+    ponto.cpp \
+    Matrix.cpp
 
 HEADERS  += mainwindow.h \
-    Aresta.h \
     Camera.h \
-    Cor.h \
     Face.h \
     Janela.h \
     Material.h \
     Matriz.h \
-    Vetor.h
+    RayCaster.h \
+    Raio.h \
+    ponto.h \
+    Vector.h \
+    Edge.h \
+    Color.h
 
 FORMS    += mainwindow.ui

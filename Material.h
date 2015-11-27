@@ -1,7 +1,7 @@
 #ifndef ____Material__
 #define ____Material__
 
-#include "Cor.h"
+#include "Color.h"
 
 class Material {
 

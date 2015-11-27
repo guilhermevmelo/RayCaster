@@ -1,4 +1,4 @@
-#include "Cor.h"
+#include "Color.h"
 
 Cor::~Cor() {}
 

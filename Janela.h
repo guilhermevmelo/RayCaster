@@ -1,7 +1,7 @@
 #ifndef ____Janela__
 #define ____Janela__
 
-#include "Vetor.h"
+#include "Vector.h"
 
 class Janela {
 
@@ -11,7 +11,7 @@ public:
     Janela(double larguraImagem, double alturaImagem, double larguraFrame, double alturaFrame, double distancia);
     ~Janela();
 
-    Vetor calculeXYZ(double i, double j);
+    Vector calculeXYZ(double i, double j);
 };
 
 #endif /* defined(____Janela__) */

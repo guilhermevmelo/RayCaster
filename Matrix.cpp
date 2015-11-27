@@ -1,11 +1,11 @@
 #include "Matriz.h"
 
-Matriz::~Matriz() { }
+Matrix::~Matrix() { }
 
-Matriz::Matriz() { }
+Matrix::Matrix() { }
 
-Matriz Matriz::mundo_camera(Camera &camera) {
-    Matriz matriz;
+Matrix Matrix::world_camera(Camera &camera) {
+    Matrix matriz;
     matriz(0, 0) = camera.i(0);
     matriz(0, 1) = camera.i(1);
     matriz(0, 2) = camera.i(2);
@@ -29,8 +29,8 @@ Matriz Matriz::mundo_camera(Camera &camera) {
     return matriz;
 }
 
-Matriz Matriz::camera_mundo(Camera &camera) {
-    Matriz matriz;
+Matrix Matrix::camera_world(Camera &camera) {
+    Matrix matriz;
     matriz(0, 0) = camera.i(0);
     matriz(1, 0) = camera.i(1);
     matriz(2, 0) = camera.i(2);

@@ -1,30 +1,30 @@
-#include "Vetor.h"
+#include "Vector.h"
 #include <iostream>
 
 using namespace std;
 
-Vetor::Vetor() {
+Vector::Vector() {
     elementos[3] = 0;
 }
 
-Vetor::Vetor(double x, double y, double z) {
+Vector::Vector(double x, double y, double z) {
     elementos[0] = x;
     elementos[1] = y;
     elementos[2] = z;
     elementos[3] = 0;
 }
 
-Vetor::~Vetor() { }
+Vector::~Vector() { }
 
-double Vetor::comprimento() {
+double Vector::comprimento() {
     double soma_dos_quadrados = (*this)(0) * (*this)(0)
                     + (*this)(1) * (*this)(1)
                     + (*this)(2) * (*this)(2);
     return sqrt(soma_dos_quadrados);
 }
 
-Vetor Vetor::normalize() {
-    Vetor vetor;
+Vector Vector::normalize() {
+    Vector vetor;
     double n = comprimento();
 
     vetor(0) = elementos[0] / n;
@@ -34,8 +34,8 @@ Vetor Vetor::normalize() {
     return vetor;
 }
 
-Vetor operator+(const Vetor &esquerda, const Vetor &direita) {
-    Vetor vetor;
+Vector operator+(const Vector &esquerda, const Vector &direita) {
+    Vector vetor;
 
     vetor(0) = esquerda(0) + direita(0);
     vetor(1) = esquerda(1) + direita(1);
@@ -44,8 +44,8 @@ Vetor operator+(const Vetor &esquerda, const Vetor &direita) {
     return vetor;
 }
 
-Vetor operator-(const Vetor &esquerda, const Vetor &direita) {
-    Vetor vetor;
+Vector operator-(const Vector &esquerda, const Vector &direita) {
+    Vector vetor;
 
     vetor(0) = esquerda(0) - direita(0);
     vetor(1) = esquerda(1) - direita(1);
@@ -54,20 +54,20 @@ Vetor operator-(const Vetor &esquerda, const Vetor &direita) {
     return vetor;
 }
 
-double operator*(const Vetor &esquerda, const Vetor &direita) {
+double operator*(const Vector &esquerda, const Vector &direita) {
     return (esquerda(0) * direita(0)) + (esquerda(1) * direita(1)) + (esquerda(2) * direita(2));
 }
 
-Vetor operator*(double escalar, const Vetor &vetor) {
-    return Vetor(escalar * vetor(0), escalar * vetor(1), escalar * vetor(2));
+Vector operator*(double escalar, const Vector &vetor) {
+    return Vector(escalar * vetor(0), escalar * vetor(1), escalar * vetor(2));
 }
 
-Vetor operator*(const Vetor &vetor, double escalar) {
+Vector operator*(const Vector &vetor, double escalar) {
     return escalar * vetor;
 }
 
-Vetor operator|(const Vetor &esquerda, const Vetor &direita) {
-    Vetor vetor;
+Vector operator|(const Vector &esquerda, const Vector &direita) {
+    Vector vetor;
 
     vetor(0) = esquerda(1) * direita(2) - esquerda(2) * direita(1);
     vetor(1) = esquerda(2) * direita(0) - esquerda(0) * direita(2);
@@ -76,7 +76,7 @@ Vetor operator|(const Vetor &esquerda, const Vetor &direita) {
     return vetor;
 }
 
-ostream & operator<<(ostream & out, const Vetor &vetor) {
+ostream & operator<<(ostream & out, const Vector &vetor) {
     out <<"[" << vetor(0);
     for(int i = 1 ; i < 3 ; i++)
         out << ", " << vetor(i);

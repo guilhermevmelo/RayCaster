@@ -1,4 +1,4 @@
-#include "Aresta.h"
+#include "Edge.h"
 #include <vector>
 
-typedef std::vector<Aresta> Face;
+typedef std::vector<Edge> Face;
