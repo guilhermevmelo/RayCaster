@@ -7,3 +7,7 @@ Camera::Camera(Point &origin, Point &lookAt, Point &up) : origem(origin), lookAt
     i = ((up - origin) | k).normalize();
     j = k | i;
 }
+
+Ray* Camera::createRay(Vector &direction) {
+    return new Ray(origin, direction);
+}
