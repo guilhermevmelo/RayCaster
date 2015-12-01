@@ -22,7 +22,10 @@ SOURCES += main.cpp\
     Ray.cpp \
     Vector.cpp \
     Color.cpp \
-    Window.cpp
+    Window.cpp \
+    Scene.cpp \
+    Object.cpp \
+    Light.cpp
 
 HEADERS  += mainwindow.h \
     Camera.h \
@@ -35,6 +38,9 @@ HEADERS  += mainwindow.h \
     Ray.h \
     Point.h \
     Window.h \
-    Matrix.h
+    Matrix.h \
+    Scene.h \
+    Object.h \
+    Light.h
 
 FORMS    += mainwindow.ui

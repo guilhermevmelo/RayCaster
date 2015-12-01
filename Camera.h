@@ -3,17 +3,18 @@
 
 #include "Vector.h"
 #include "Point.h"
+#include "Ray.h"
 
 class Camera {
 
 public:
-    Vector i, j, k, up;
-    Point origem, lookAt;
+    Vector i, j, k;
+    Point origin, lookAt, up;
 
-    Camera(Point &origem, Point &lookAt, Vector &up);
+    Camera(Point &origin, Point &lookAt, Point &up);
     ~Camera();
 
-
+    Ray* createRay(Vector &direction);
 };
 
 #endif /* defined(____Camera__) */
