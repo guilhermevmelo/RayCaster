@@ -5,13 +5,12 @@
 
 class Ray {
 public:
-    Ray();
-    Ray(Point &origin, Vector &direction);
-    ~Ray();
-
-    Vector direction;
     Point origin;
+    Vector direction;
 
+    Ray();
+    Ray(Point origin, Vector direction);
+    ~Ray();
 };
 
 #endif // RAIO_H
