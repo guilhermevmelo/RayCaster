@@ -9,7 +9,6 @@ class Camera {
 
 public:
     Vector i, j, k;
-
     Point origin, lookAt, up;
 
     Camera(Point &origin, Point &lookAt, Point &up);

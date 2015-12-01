@@ -1,6 +1,7 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+
 #include <vector>
 #include "Camera.h"
 #include "Object.h"
@@ -9,9 +10,11 @@
 
 class Scene {
 public:
+
     Camera camera;
     std::vector<Object> objects;
     std::vector<Light> lights;
+
 
     Scene(Camera &camera);
     ~Scene();

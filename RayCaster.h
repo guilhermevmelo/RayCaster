@@ -3,7 +3,6 @@
 
 #include "Camera.h"
 
-
 class RayCaster{
 public:
     RayCaster();

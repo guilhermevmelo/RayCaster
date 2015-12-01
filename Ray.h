@@ -8,8 +8,10 @@ public:
     Ray();
     Ray(Point &origin, Vector &direction);
     ~Ray();
+
     Vector direction;
     Point origin;
+
 };
 
 #endif // RAIO_H
