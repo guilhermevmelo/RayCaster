@@ -1,8 +1,10 @@
 #ifndef PONTO_H
 #define PONTO_H
 
+#include "Point.h"
 
 class Point {
+
 public:
     Point();
     Point(double, double, double);
@@ -15,6 +17,7 @@ public:
     inline double operator()(int i) const {
         return elements[i];
     };
+
 private:
     double elements[4];
 };

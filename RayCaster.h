@@ -4,6 +4,7 @@
 
 class RayCaster
 {
+
 public:
     RayCaster();
 };

@@ -7,10 +7,10 @@
 class Camera {
 
 public:
-    Vector i, j, k, up;
-    Point origem, lookAt;
+    Vector i, j, k;
+    Point origem, lookAt, up;
 
-    Camera(Point &origem, Point &lookAt, Vector &up);
+    Camera(Point &origem, Point &lookAt, Point &up);
     ~Camera();
 
 

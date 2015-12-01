@@ -1,8 +1,10 @@
 #ifndef ____vector__
 #define ____vector__
 
+#include "Point.h"
 #include <iostream>
 #include <cmath>
+
 
 class Vector {
   public:
@@ -26,11 +28,17 @@ class Vector {
 };
 
 Vector operator+(const Vector &left, const Vector &right);
-
 Vector operator-(const Vector &left, const Vector &right);
+
+Point operator+(const Point &point, const Vector &vector);
+Point operator+(const Vector &vector, const Point &point);
+
+Vector operator-(const Point &left, const Point &right);
 
 //Produto Escalar
 double operator*(const Vector &left, const Vector &right);
+double operator*(const Vector &vector, const Point &point);
+double operator*(const Point &point, const Vector &vector);
 
 //Produto Escalar por um vector
 Vector operator*(double escalar, const Vector &vector);

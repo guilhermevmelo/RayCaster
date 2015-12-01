@@ -1,8 +1,5 @@
 #include "Point.h"
-
-#include <iostream>
-
-using namespace std;
+#include "Vector.h"
 
 Point::Point() {
     elements[3] = 0;
@@ -16,4 +13,3 @@ Point::Point(double x, double y, double z) {
 }
 
 Point::~Point() { }
-

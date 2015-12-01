@@ -24,38 +24,70 @@ double Vector::length() {
 }
 
 Vector Vector::normalize() {
-    Vector vetor;
+    Vector vector;
     double n = length();
 
-    vetor(0) = elements[0] / n;
-    vetor(1) = elements[1] / n;
-    vetor(2) = elements[2] / n;
+    vector(0) = elements[0] / n;
+    vector(1) = elements[1] / n;
+    vector(2) = elements[2] / n;
 
-    return vetor;
+    return vector;
 }
 
 Vector operator+(const Vector &left, const Vector &right) {
-    Vector vetor;
+    Vector vector;
 
-    vetor(0) = left(0) + right(0);
-    vetor(1) = left(1) + right(1);
-    vetor(2) = left(2) + right(1);
+    vector(0) = left(0) + right(0);
+    vector(1) = left(1) + right(1);
+    vector(2) = left(2) + right(1);
 
-    return vetor;
+    return vector;
 }
 
-Vector operator-(const Vector &esquerda, const Vector &direita) {
-    Vector vetor;
+Vector operator-(const Vector &left, const Vector &right) {
+    Vector vector;
 
-    vetor(0) = esquerda(0) - direita(0);
-    vetor(1) = esquerda(1) - direita(1);
-    vetor(2) = esquerda(2) - direita(2);
+    vector(0) = left(0) - right(0);
+    vector(1) = left(1) - right(1);
+    vector(2) = left(2) - right(2);
 
-    return vetor;
+    return vector;
+}
+
+Point operator+(const Point &point, const Vector &vector) {
+    Point result;
+
+    result(0) = point(0) + vector(0);
+    result(1) = point(1) + vector(1);
+    result(2) = point(2) + vector(1);
+
+    return result;
+}
+
+Point operator+(const Vector &vector, const Point &point) {
+    return point + vector;
+}
+
+Vector operator-(const Point &left, const Point &right) {
+    Vector vector;
+
+    vector(0) = left(0) - right(0);
+    vector(1) = left(1) - right(1);
+    vector(2) = left(2) - right(2);
+
+    return vector;
 }
 
 double operator*(const Vector &esquerda, const Vector &direita) {
     return (esquerda(0) * direita(0)) + (esquerda(1) * direita(1)) + (esquerda(2) * direita(2));
+}
+
+double operator*(const Vector &vector, const Point &point) {
+    return (vector(0) * point(0)) + (vector(1) * point(1)) + (vector(2) * point(2));
+}
+
+double operator*(const Point &point, const Vector &vector) {
+    return vector * point;
 }
 
 Vector operator*(double escalar, const Vector &vetor) {
