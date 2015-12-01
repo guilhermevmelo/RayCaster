@@ -15,26 +15,26 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     Camera.cpp \
-    Cor.cpp \
-    Janela.cpp \
     Material.cpp \
-    Vetor.cpp \
     RayCaster.cpp \
-    Raio.cpp \
-    ponto.cpp \
-    Matrix.cpp
+    Matrix.cpp \
+    Point.cpp \
+    Ray.cpp \
+    Vector.cpp \
+    Color.cpp \
+    Window.cpp
 
 HEADERS  += mainwindow.h \
     Camera.h \
     Face.h \
-    Janela.h \
     Material.h \
-    Matriz.h \
     RayCaster.h \
-    Raio.h \
-    ponto.h \
     Vector.h \
     Edge.h \
-    Color.h
+    Color.h \
+    Ray.h \
+    Point.h \
+    Window.h \
+    Matrix.h
 
 FORMS    += mainwindow.ui

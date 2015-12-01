@@ -4,19 +4,19 @@
 using namespace std;
 
 Vector::Vector() {
-    elementos[3] = 0;
+    elements[3] = 0;
 }
 
 Vector::Vector(double x, double y, double z) {
-    elementos[0] = x;
-    elementos[1] = y;
-    elementos[2] = z;
-    elementos[3] = 0;
+    elements[0] = x;
+    elements[1] = y;
+    elements[2] = z;
+    elements[3] = 0;
 }
 
 Vector::~Vector() { }
 
-double Vector::comprimento() {
+double Vector::length() {
     double soma_dos_quadrados = (*this)(0) * (*this)(0)
                     + (*this)(1) * (*this)(1)
                     + (*this)(2) * (*this)(2);
@@ -25,21 +25,21 @@ double Vector::comprimento() {
 
 Vector Vector::normalize() {
     Vector vetor;
-    double n = comprimento();
+    double n = length();
 
-    vetor(0) = elementos[0] / n;
-    vetor(1) = elementos[1] / n;
-    vetor(2) = elementos[2] / n;
+    vetor(0) = elements[0] / n;
+    vetor(1) = elements[1] / n;
+    vetor(2) = elements[2] / n;
 
     return vetor;
 }
 
-Vector operator+(const Vector &esquerda, const Vector &direita) {
+Vector operator+(const Vector &left, const Vector &right) {
     Vector vetor;
 
-    vetor(0) = esquerda(0) + direita(0);
-    vetor(1) = esquerda(1) + direita(1);
-    vetor(2) = esquerda(2) + direita(1);
+    vetor(0) = left(0) + right(0);
+    vetor(1) = left(1) + right(1);
+    vetor(2) = left(2) + right(1);
 
     return vetor;
 }

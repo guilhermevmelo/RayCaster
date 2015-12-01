@@ -2,21 +2,21 @@
 #define PONTO_H
 
 
-class Ponto {
+class Point {
 public:
-    Ponto();
-    Ponto(double, double, double);
-    ~Ponto();
+    Point();
+    Point(double, double, double);
+    ~Point();
 
     inline double& operator()(int i) {
-        return elementos[i];
+        return elements[i];
     };
 
     inline double operator()(int i) const {
-        return elementos[i];
+        return elements[i];
     };
 private:
-    double elementos[4];
+    double elements[4];
 };
 
 #endif // PONTO_H

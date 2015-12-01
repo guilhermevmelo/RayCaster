@@ -1,20 +1,20 @@
 #ifndef ____Cor__
 #define ____Cor__
 
-class Cor {
+class Color {
 
 public:
     double r, g, b;
 
-    Cor();
-    Cor(double r, double g, double b);
-    ~Cor();
-    void filtre();
+    Color();
+    Color(double r, double g, double b);
+    ~Color();
+    void sanitize();
 };
 
-Cor operator+(const Cor &a, const Cor &b);
-Cor operator*(const Cor &a, const Cor &b);
-Cor operator*(double escalar, const Cor &c);
+Color operator+(const Color &a, const Color &b);
+Color operator*(const Color &a, const Color &b);
+Color operator*(double scalar, const Color &c);
 
 
 #endif /* defined(____Cor__) */

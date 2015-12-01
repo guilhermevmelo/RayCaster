@@ -6,9 +6,9 @@
 class Material {
 
 public:
-    Cor ambiente, difusa, especular;
+    Color ambient, diffuse, specular;
 
-    Material(Cor ambiente, Cor difusa, Cor especular);
+    Material(Color ambient, Color diffuse, Color specular);
     ~Material();
 };
 

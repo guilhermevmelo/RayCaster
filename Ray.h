@@ -3,11 +3,11 @@
 
 #include "Vector.h"
 
-class Raio {
+class Ray {
 public:
-    Raio();
-    ~Raio();
-    Vector *direcao;
+    Ray();
+    ~Ray();
+    Vector *direction;
 
 };
 

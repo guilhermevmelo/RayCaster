@@ -2,5 +2,5 @@
 
 Material::~Material() {}
 
-Material::Material(Cor ambiente, Cor difusa, Cor especular)
-  : ambiente(ambiente), difusa(difusa), especular(especular){ }
+Material::Material(Color ambient, Color diffuse, Color specular)
+  : ambient(ambient), diffuse(diffuse), specular(specular){ }

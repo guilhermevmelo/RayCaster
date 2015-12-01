@@ -2,8 +2,8 @@
 
 Camera::~Camera() { }
 
-Camera::Camera(Vector &origem, Vector &lookAt, Vector &up) : origem(origem), lookAt(lookAt), up(up) {
-    k = (origem - lookAt).normalize();
-    i = ((up - origem) | k).normalize();
+Camera::Camera(Vector &origin, Vector &lookAt, Vector &up) : origem(origin), lookAt(lookAt), up(up) {
+    k = (origin - lookAt).normalize();
+    i = ((up - origin) | k).normalize();
     j = k | i;
 }

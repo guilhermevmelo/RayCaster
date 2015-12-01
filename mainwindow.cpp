@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
             int g = j % 256;
             int b = (int)sqrt((double)i*i+(double)j*j)%256;
 
+            // Chama o Raycaster pra pintar as paradas boladas
             image.setPixel(i, j, qRgb(r, g, b));
 
         }

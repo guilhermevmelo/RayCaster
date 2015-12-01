@@ -2,16 +2,18 @@
 #define ____Camera__
 
 #include "Vector.h"
-#include "ponto.h"
+#include "Point.h"
 
 class Camera {
 
 public:
     Vector i, j, k, up;
-    Ponto origem, lookAt;
+    Point origem, lookAt;
 
-    Camera(Ponto &origem, Ponto &lookAt, Vector &up);
+    Camera(Point &origem, Point &lookAt, Vector &up);
     ~Camera();
+
+
 };
 
 #endif /* defined(____Camera__) */

@@ -1,5 +1,5 @@
-#ifndef ____Vetor__
-#define ____Vetor__
+#ifndef ____vector__
+#define ____vector__
 
 #include <iostream>
 #include <cmath>
@@ -10,36 +10,36 @@ class Vector {
     Vector(double, double, double);
     ~Vector();
 
-    double comprimento();
+    double length();
     Vector normalize();
 
     inline double& operator()(int i) {
-        return elementos[i];
+        return elements[i];
     };
 
     inline double operator()(int i) const {
-        return elementos[i];
+        return elements[i];
     };
 
   private:
-    double elementos[4];
+    double elements[4];
 };
 
-Vector operator+(const Vector &esquerda, const Vector &direita);
+Vector operator+(const Vector &left, const Vector &right);
 
-Vector operator-(const Vector &esquerda, const Vector &direita);
+Vector operator-(const Vector &left, const Vector &right);
 
 //Produto Escalar
-double operator*(const Vector &esquerda, const Vector &direita);
+double operator*(const Vector &left, const Vector &right);
 
-//Produto Escalar por um Vetor
-Vector operator*(double escalar, const Vector &vetor);
-Vector operator*(const Vector &vetor, double escalar);
+//Produto Escalar por um vector
+Vector operator*(double escalar, const Vector &vector);
+Vector operator*(const Vector &vector, double escalar);
 
-//Produto Vetorial
-Vector operator|(const Vector &esquerda, const Vector &direita);
+//Produto vectorial
+Vector operator|(const Vector &left, const Vector &right);
 
 //Usar para debugar
-std::ostream& operator<<(std::ostream& out, const Vector &vetor);
+std::ostream& operator<<(std::ostream& out, const Vector &vector);
 
-#endif /* defined(____Vetor__) */
+#endif /* defined(____vector__) */
