@@ -1,17 +1,18 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+#include <vector>
 #include "Camera.h"
 #include "Object.h"
+#include "Light.h"
 #include "Ray.h"
 
 class Scene {
 public:
-    Camera &camera;
-    std::vector<Object *> objects;
+    Camera camera;
+    std::vector<Object> objects;
     std::vector<Light> lights;
 
-    Scene();
     Scene(Camera &camera);
     ~Scene();
 

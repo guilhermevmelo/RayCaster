@@ -2,6 +2,7 @@
 #define LIGHT_H
 
 #include "Point.h"
+#include "Color.h"
 
 class Light {
 public:
