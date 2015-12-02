@@ -2,10 +2,12 @@
 #define OBJECT_H
 
 
-class Object
-{
+class Object {
 public:
+    std:vector<Face> faces;
     Object();
+
+    Hit hit();
 };
 
 #endif // OBJECT_H
