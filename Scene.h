@@ -6,6 +6,7 @@
 #include "Object.h"
 #include "Light.h"
 #include "Ray.h"
+#include "Hit.h"
 
 class Scene {
 public:
@@ -20,7 +21,7 @@ public:
 
     void addLight(Light &light);
     void addObject(Object &obj);
-    void touch(Ray &ray);
+    Hit touch(Ray &ray);
 };
 
 #endif // SCENE_H

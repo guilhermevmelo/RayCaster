@@ -9,6 +9,6 @@ Camera::Camera(Point &origin, Point &lookAt, Point &up) : origin(origin), lookAt
     j = k | i;
 }
 
-Ray* Camera::createRay(Vector &direction) {
-    return new Ray(origin, direction);
+Ray Camera::createRay(const Point &direction) {
+    return Ray(origin, direction);
 }

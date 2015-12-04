@@ -14,7 +14,7 @@ public:
     Camera(Point &origin, Point &lookAt, Point &up);
     ~Camera();
 
-    Ray* createRay(Vector &direction);
+    Ray createRay(const Point &direction);
 };
 
 #endif /* defined(____Camera__) */

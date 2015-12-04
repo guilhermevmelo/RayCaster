@@ -6,10 +6,10 @@
 class Ray {
 public:
     Point origin;
-    Vector direction;
+    Point direction;
 
     Ray();
-    Ray(Point origin, Vector direction);
+    Ray(Point origin, Point direction);
     ~Ray();
 };
 

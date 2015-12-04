@@ -4,4 +4,4 @@ Ray::Ray() {
 
 }
 
-Ray::Ray(Point origin, Vector direction):origin(origin), direction(direction) {}
+Ray::Ray(Point origin, Point direction):origin(origin), direction(direction) {}
