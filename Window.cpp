@@ -14,5 +14,7 @@ Point Window::calculateXYZ(double i, double j) {
     double z = -distance;
     Point point(x, y, z);
 
+    //std::cout << "pixel coordinates: x = " << x << " y =" << y << " z =" << z << std::endl;
+
     return point;
 }

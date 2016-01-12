@@ -10,7 +10,9 @@ public:
 
     Ray();
     Ray(Point origin, Point direction);
-    ~Ray();
+
+    Vector getVector();
+    Vector getNormalizedVector();
 };
 
 #endif // RAIO_H

@@ -2,7 +2,7 @@
 #define ____Janela__
 
 #include "Point.h"
-
+#include <iostream>
 class Window {
 
 public:

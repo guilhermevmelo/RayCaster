@@ -12,23 +12,41 @@ MainWindow::MainWindow(QWidget *parent) :
     int W = 600;
     int H = 400;
 
-    Point eye = Point(5, 5, 5);
+    Point eye = Point(0, 0, 100);
     Point lookAt = Point(0, 0, 0);
-    Point up = Point(-5, 10, -5);
+    Point up = Point(0, 100, 100);
     Camera camera = Camera(eye, lookAt, up);
     Window frame = Window(600, 600, 600, 600, 1.7320);
-    Scene scene = Scene(camera);
+    Scene scene = Scene(camera, Color(0, 0, 0));
 
-    Point p1 = Point(1, 0, 0);
-    Point p2 = Point(0, 1, 0);
-    Point p3 = Point(0, 0, 1);
+    Light ambient = Light(Point(100, 100, 100), Color(255, 255, 255));
+    scene.addLight(ambient);
 
-    Triangle tri = Triangle(p1, p2, p3);
+    Point p1 = Point(10, 0, 0);
+    Point p2 = Point(0, 10, 0);
+    Point p3 = Point(0, 0, 10);
+    Point p4 = Point(5, 5, 5);
 
-    std::cout << tri.get_plane_distance();
+    Material material1 = Material(0.9, 0.5, 0.8);
+    Triangle f1 = Triangle(p1, p2, p3);
+    Triangle f2 = Triangle(p2, p4, p3);
+    Triangle f3 = Triangle(p1, p4, p2);
+    Triangle f4 = Triangle(p1, p3, p4);
+
+    Object obj1 = Object(material1);
+    obj1.addTriangle(f1);
+    obj1.addTriangle(f2);
+    obj1.addTriangle(f3);
+    obj1.addTriangle(f4);
+
+    scene.addObject(obj1);
+
+    //std::cout << f1.get_plane_distance() << std::endl;
 
     QImage image = QImage(W, H, QImage::Format_RGB32);
     QGraphicsScene * graphic = new QGraphicsScene(this);
+
+    //std::cout << "About to enter main loop" << std::endl;
 
     for (int i = 0; i < W; i++) {
         for (int j = 0; j < H; j++) {
@@ -36,11 +54,16 @@ MainWindow::MainWindow(QWidget *parent) :
             int g = j % 256;
             int b = (int)sqrt((double)i*i+(double)j*j)%256;
 
+            //std::cout << "\nWe are now evaluating the colour of pixel: i = " << i << ", j = " << j << std::endl;
+
             Ray ray = camera.createRay(frame.calculateXYZ(i, j));
-            Hit hit = scene.touch(ray);
-            Color color = hit.getColor();
+            //std::cout << "We have the ray, let's see if it hits" << std::endl;
+            Color color = scene.touch(ray);
+            //std::cout << "Now let's colour that pixel" << std::endl;
+
             QRgb qtRGB = qRgb(color.r, color.g, color.b);
 
+            //QRgb qtRGB = qRgb(r, g, b);
             image.setPixel(i, j, qtRGB);
 
         }

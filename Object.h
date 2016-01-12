@@ -11,6 +11,7 @@ public:
     std::vector<Triangle> faces;
     Material material;
     Object(Material material);
+    Object();
 
     Hit hit();
     void addTriangle(Triangle t);

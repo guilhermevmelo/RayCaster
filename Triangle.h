@@ -3,17 +3,21 @@
 
 #include "Point.h"
 #include "Ray.h"
+#include "Hit.h"
 #include "Vector.h"
 
+class Hit;
 class Triangle {
 public:
     Point points[3];
     Vector normal;
 
     Triangle(Point &a, Point &b, Point &c);
-    double get_intersection(Ray &ray);
+    Hit get_intersection(Ray &ray);
     Vector get_normal();
     double get_plane_distance();
+    bool is_same_side(Point &p1, Point &p2, Point &a, Point &b);
+    bool is_inside(Point &p);
 };
 
 #endif // TRIANGLE_H

@@ -8,8 +8,8 @@ class Material {
 public:
     double ambient, diffuse, specular;
 
+    Material();
     Material(double ambient, double diffuse, double specular);
-    ~Material();
 };
 
 #endif /* defined(____Material__) */

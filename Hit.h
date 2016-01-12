@@ -3,15 +3,14 @@
 
 #include "Color.h"
 #include "Triangle.h"
-#include "Material.h"
 
+class Triangle;
 class Hit {
 public:
-    Hit(double distance, Triangle face, Material material);
+    Hit(double distance, Triangle *face);
 
-    double t;
-    Triangle face;
-    Material material;
+    double distance;
+    Triangle *face;
 
     Color getColor();
 };

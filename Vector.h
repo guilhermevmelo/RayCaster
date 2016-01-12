@@ -32,8 +32,11 @@ Vector operator-(const Vector &left, const Vector &right);
 
 Point operator+(const Point &point, const Vector &vector);
 Point operator+(const Vector &vector, const Point &point);
+Vector operator-(const Vector &vector, const Point &point);
+Vector operator-(const Point &point, const Vector &vector);
 
 Vector operator-(const Point &left, const Point &right);
+Vector operator-(const Vector &vector, const double x);
 
 //Produto Escalar
 double operator*(const Vector &left, const Vector &right);
@@ -49,5 +52,6 @@ Vector operator|(const Vector &left, const Vector &right);
 
 //Usar para debugar
 std::ostream& operator<<(std::ostream& out, const Vector &vector);
+std::ostream& operator<<(std::ostream& out, const Point &point);
 
 #endif /* defined(____vector__) */

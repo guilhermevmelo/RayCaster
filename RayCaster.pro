@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     Object.cpp \
     Light.cpp \
     Triangle.cpp \
-    Hit.cpp
+    Hit.cpp \
+    Cube.cpp
 
 HEADERS  += mainwindow.h \
     Camera.h \
@@ -45,6 +46,7 @@ HEADERS  += mainwindow.h \
     Object.h \
     Light.h \
     Triangle.h \
-    Hit.h
+    Hit.h \
+    Cube.h
 
 FORMS    += mainwindow.ui

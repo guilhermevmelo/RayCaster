@@ -7,6 +7,7 @@
 #include "Light.h"
 #include "Ray.h"
 #include "Hit.h"
+#include "Material.h"
 
 class Scene {
 public:
@@ -14,14 +15,14 @@ public:
     Camera camera;
     std::vector<Object> objects;
     std::vector<Light> lights;
+    Color background;
 
-
-    Scene(Camera &camera);
-    ~Scene();
+    Scene(Camera &camera, Color background);
 
     void addLight(Light &light);
     void addObject(Object &obj);
-    Hit touch(Ray &ray);
+    Color touch(Ray &ray);
+    Color process_lights(Material &material);
 };
 
 #endif // SCENE_H

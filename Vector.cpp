@@ -64,6 +64,20 @@ Point operator+(const Point &point, const Vector &vector) {
     return result;
 }
 
+Vector operator-(const Point &point, const Vector &vector) {
+    Vector result;
+
+    result(0) = point(0) - vector(0);
+    result(1) = point(1) - vector(1);
+    result(2) = point(2) - vector(1);
+
+    return result;
+}
+
+Vector operator-(const Vector &vector, const Point &point) {
+    return point - vector;
+}
+
 Point operator+(const Vector &vector, const Point &point) {
     return point + vector;
 }
@@ -74,6 +88,16 @@ Vector operator-(const Point &left, const Point &right) {
     vector(0) = left(0) - right(0);
     vector(1) = left(1) - right(1);
     vector(2) = left(2) - right(2);
+
+    return vector;
+}
+
+Vector operator-(const Vector &vector, const double x) {
+    Vector r;
+
+    r(0) = vector(0) - x;
+    r(1) = vector(1) - x;
+    r(2) = vector(2) - x;
 
     return vector;
 }
@@ -112,6 +136,15 @@ ostream & operator<<(ostream & out, const Vector &vetor) {
     out <<"[" << vetor(0);
     for(int i = 1 ; i < 3 ; i++)
         out << ", " << vetor(i);
+
+    out << "]";
+    return out;
+}
+
+ostream & operator<<(ostream & out, const Point &point) {
+    out <<"[" << point(0);
+    for(int i = 1 ; i < 3 ; i++)
+        out << ", " << point(i);
 
     out << "]";
     return out;
