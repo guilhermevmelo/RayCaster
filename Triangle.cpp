@@ -7,8 +7,8 @@ Triangle::Triangle(Point &a, Point &b, Point &c) {
     points[1] = b;
     points[2] = c;
 
-    normal = (c - a) | (b - a);
-    normal = normal;
+    normal = (a - c) | (b - c);
+
     normal = normal.normalize();
 
     //std::cout <<  "DEBUG: Triangle::Triangle(); " << std::endl << "normal = " << normal << std::endl;
@@ -22,11 +22,13 @@ Hit Triangle::get_intersection(Ray &ray) {
     if (ray.getVector() * normal == 0)
         return Hit(std::numeric_limits<double>::max(), NULL);
 
-    double t = - ((ray.origin * normal) + get_plane_distance())/(ray.getVector()* normal);
+    double t = - ((ray.origin * normal) + get_plane_distance())/(ray.vector * normal);
+    //double t = - ((normal * (ray.origin - points[0])) / (normal * ray.vector));
+
     //std::cout << "  t = " << t << std::endl;
     //std::cout << "  We found the intersection with the plane, now let's see if it touches the face." << std::endl;
 
-    Point p = ray.origin + t * ray.getNormalizedVector();
+    Point p = ray.origin + t * ray.vector.normalize();
     //std::cout << ray.getVector() << " :: " << p <<  std::endl;
 
     if (is_inside(p)) {

@@ -7,12 +7,10 @@ class Ray {
 public:
     Point origin;
     Point direction;
+    Vector vector;
 
     Ray();
     Ray(Point origin, Point direction);
-
-    Vector getVector();
-    Vector getNormalizedVector();
 };
 
 #endif // RAIO_H

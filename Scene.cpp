@@ -22,7 +22,6 @@ Color Scene::touch(Ray &ray) {
     Material *material = NULL;
     bool did_hit = false;
     int num_hits = 0;
-    Color colour;
 
     //std::cout << "DEBUG: entering objects list loop" << std::endl;
 

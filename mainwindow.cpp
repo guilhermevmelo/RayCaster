@@ -7,6 +7,8 @@
 #include "Cube.h"
 #include "Matrix.h"
 
+using namespace std;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow) {
@@ -21,8 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     Matrix WtoC = Matrix::world_camera(camera);
     Matrix CtoW = Matrix::camera_world(camera);
+
     Window frame = Window(60, 40, 60, 40, 35);
-    Scene scene = Scene(camera, Color(1, 1, 1));
+    Scene scene = Scene(camera, Color(1, 1, 1)
 
     Light ambient = Light(Point(100, 100, 100), Color(0.5, 0.5, 0.5));
     scene.addLight(ambient);
