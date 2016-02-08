@@ -4,6 +4,7 @@
 #include "Triangle.h"
 #include "Hit.h"
 #include "Material.h"
+#include "Matrix.h"
 #include <vector>
 
 class Object {
@@ -15,6 +16,7 @@ public:
 
     Hit hit();
     void addTriangle(Triangle t);
+    void applyTransformation(Matrix &matrix);
 };
 
 #endif // OBJECT_H

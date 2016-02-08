@@ -69,6 +69,17 @@ bool Triangle::is_inside(Point &p) {
         return true;
     return false;
 }
+
+void Triangle::applyTransformation(Matrix &matrix) {
+    points[0] = matrix * points[0];
+    points[1] = matrix * points[1];
+    points[2] = matrix * points[2];
+
+    std::cout << points[0] << std::endl;
+    std::cout << points[1] << std::endl;
+    std::cout << points[2] << std::endl;
+    std::cout << "#####" << std::endl;
+}
 //    if SameSide(p,a, b,c) and SameSide(p,b, a,c)
 //        and SameSide(p,c, a,b) then return true
 //    else return false

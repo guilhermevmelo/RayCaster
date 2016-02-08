@@ -5,6 +5,7 @@
 #include "Ray.h"
 #include "Hit.h"
 #include "Vector.h"
+#include "Matrix.h"
 
 class Hit;
 class Triangle {
@@ -18,6 +19,7 @@ public:
     double get_plane_distance();
     bool is_same_side(Point &p1, Point &p2, Point &a, Point &b);
     bool is_inside(Point &p);
+    void applyTransformation(Matrix &matrix);
 };
 
 #endif // TRIANGLE_H

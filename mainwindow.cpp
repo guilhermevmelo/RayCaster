@@ -18,9 +18,10 @@ MainWindow::MainWindow(QWidget *parent) :
     Point lookAt = Point(0, 0, 0);
     Point up = Point(0, 100, 100);
     Camera camera = Camera(eye, lookAt, up);
+
     Matrix WtoC = Matrix::world_camera(camera);
     Matrix CtoW = Matrix::camera_world(camera);
-    Window frame = Window(600, 600, 100, 100, 150);
+    Window frame = Window(600, 600, 100, 100, 1);
     Scene scene = Scene(camera, Color(255, 255, 255));
 
     Light ambient = Light(Point(100, 100, 100), Color(0, 0, 255));
@@ -43,11 +44,13 @@ MainWindow::MainWindow(QWidget *parent) :
     obj1.addTriangle(f3);
     obj1.addTriangle(f4);
 
+    obj1.applyTransformation(WtoC);
+
     scene.addObject(obj1);
 
-    Material m2 = Material(0.9, 0.9, 0.9);
-    Cube c1 = Cube(Point(5, 0, 0), 13, 15, 20, m2);
-    scene.addObject(c1);
+//    Material m2 = Material(0.9, 0.9, 0.9);
+//    Cube c1 = Cube(Point(5, 0, 0), 13, 15, 20, m2);
+//    scene.addObject(c1);
 
     //std::cout << f1.get_plane_distance() << std::endl;
 
@@ -64,7 +67,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
             //std::cout << "\nWe are now evaluating the colour of pixel: i = " << i << ", j = " << j << std::endl;
 
-            Ray ray = camera.createRay(CtoW * frame.calculateXYZ(i, j));
+            Ray ray = camera.createRay(frame.calculateXYZ(i, j));
             //std::cout << "We have the ray, let's see if it hits" << std::endl;
             Color color = scene.touch(ray);
             //std::cout << "Now let's colour that pixel" << std::endl;
