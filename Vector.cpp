@@ -127,7 +127,7 @@ Vector operator|(const Vector &esquerda, const Vector &direita) {
 
     vetor(0) = esquerda(1) * direita(2) - esquerda(2) * direita(1);
     vetor(1) = esquerda(2) * direita(0) - esquerda(0) * direita(2);
-    vetor(2) = esquerda(3) * direita(1) - esquerda(1) * direita(3);
+    vetor(2) = esquerda(0) * direita(1) - esquerda(1) * direita(0);
 
     return vetor;
 }

@@ -3,10 +3,11 @@
 Camera::~Camera() { }
 
 Camera::Camera(Point &origin, Point &lookAt, Point &up) : origin(origin), lookAt(lookAt), up(up) {
-
     k = (origin - lookAt).normalize();
     i = ((up - origin) | k).normalize();
     j = k | i;
+
+    std::cout << "DEBUG: i: " << i << " j: " << j << " k: " << k << std::endl;
 }
 
 Ray Camera::createRay(const Point &direction) {

@@ -2,7 +2,10 @@
 #include <limits>
 #include <cstdlib>
 
-Scene::Scene(Camera &camera, Color background) : camera(camera), background(background) {}
+Scene::Scene(Camera &camera, Color background) : camera(camera), background(background) {
+    //WtoC = Matrix::world_camera(camera);
+    //CtoW = Matrix::camera_world(camera);
+}
 
 void Scene::addObject(Object &obj) {
     objects.push_back(obj);

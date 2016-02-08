@@ -8,14 +8,17 @@
 #include "Ray.h"
 #include "Hit.h"
 #include "Material.h"
+#include "Matrix.h"
 
 class Scene {
 public:
-
     Camera camera;
     std::vector<Object> objects;
     std::vector<Light> lights;
     Color background;
+
+    //Matrix WtoC;
+    //Matrix CtoW;
 
     Scene(Camera &camera, Color background);
 

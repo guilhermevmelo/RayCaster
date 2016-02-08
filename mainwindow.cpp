@@ -4,6 +4,8 @@
 #include "Ray.h"
 #include "Window.h"
 #include "Scene.h"
+#include "Cube.h"
+#include "Matrix.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -16,10 +18,12 @@ MainWindow::MainWindow(QWidget *parent) :
     Point lookAt = Point(0, 0, 0);
     Point up = Point(0, 100, 100);
     Camera camera = Camera(eye, lookAt, up);
-    Window frame = Window(600, 600, 600, 600, 1.7320);
-    Scene scene = Scene(camera, Color(0, 0, 0));
+    Matrix WtoC = Matrix::world_camera(camera);
+    Matrix CtoW = Matrix::camera_world(camera);
+    Window frame = Window(600, 600, 100, 100, 150);
+    Scene scene = Scene(camera, Color(255, 255, 255));
 
-    Light ambient = Light(Point(100, 100, 100), Color(255, 255, 255));
+    Light ambient = Light(Point(100, 100, 100), Color(0, 0, 255));
     scene.addLight(ambient);
 
     Point p1 = Point(10, 0, 0);
@@ -41,6 +45,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     scene.addObject(obj1);
 
+    Material m2 = Material(0.9, 0.9, 0.9);
+    Cube c1 = Cube(Point(5, 0, 0), 13, 15, 20, m2);
+    scene.addObject(c1);
+
     //std::cout << f1.get_plane_distance() << std::endl;
 
     QImage image = QImage(W, H, QImage::Format_RGB32);
@@ -56,7 +64,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
             //std::cout << "\nWe are now evaluating the colour of pixel: i = " << i << ", j = " << j << std::endl;
 
-            Ray ray = camera.createRay(frame.calculateXYZ(i, j));
+            Ray ray = camera.createRay(CtoW * frame.calculateXYZ(i, j));
             //std::cout << "We have the ray, let's see if it hits" << std::endl;
             Color color = scene.touch(ray);
             //std::cout << "Now let's colour that pixel" << std::endl;

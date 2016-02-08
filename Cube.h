@@ -5,7 +5,7 @@
 #include "Material.h"
 #include "Object.h"
 
-class Cube : Object {
+class Cube : public Object {
 public:
     Material material;
     Cube(Point corner, double width, double height, double depth, Material &material);

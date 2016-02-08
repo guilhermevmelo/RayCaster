@@ -3,6 +3,7 @@
 
 #include "Vector.h"
 #include "Camera.h"
+#include "Point.h"
 
 class Matrix {
 
@@ -11,8 +12,8 @@ public:
     Matrix();
     ~Matrix();
 
-    Matrix world_camera(Camera &camera);
-    Matrix camera_world(Camera &camera);
+    static Matrix world_camera(Camera &camera);
+    static Matrix camera_world(Camera &camera);
 
     inline double& operator()(int line, int column) {
       return elements[line][column];
@@ -25,5 +26,8 @@ public:
 private:
     double elements[4][4];
 };
+
+Vector operator*(const Matrix &left, const Vector &right);
+Point operator*(const Matrix &left, const Point &right);
 
 #endif /* defined(____Matriz__) */
