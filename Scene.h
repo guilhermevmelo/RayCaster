@@ -2,6 +2,8 @@
 #define SCENE_H
 
 #include <vector>
+#include "Vector.h"
+#include "Point.h"
 #include "Camera.h"
 #include "Object.h"
 #include "Light.h"
@@ -25,7 +27,7 @@ public:
     void addLight(Light &light);
     void addObject(Object &obj);
     Color touch(Ray &ray);
-    Color process_lights(Material &material);
+    Color process_lights(Material &material, Point intersection, Vector normal);
 };
 
 #endif // SCENE_H

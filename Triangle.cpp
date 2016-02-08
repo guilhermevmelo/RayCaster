@@ -18,8 +18,9 @@ Hit Triangle::get_intersection(Ray &ray) {
     //std::cout << "::DEBUG: Triangle::get_intersection(); " << std::endl;
     //std::cout << "  (" << ray.origin * normal << " + " << get_plane_distance() << ") / ((" << ray.getVector() << ") * " << normal << ")" << std::endl;
 
+    // Se o produto escalar for 0, o raio eh paralelo à face
     if (ray.getVector() * normal == 0)
-        return Hit(-100, this);
+        return Hit(std::numeric_limits<double>::max(), NULL);
 
     double t = - ((ray.origin * normal) + get_plane_distance())/(ray.getVector()* normal);
     //std::cout << "  t = " << t << std::endl;
@@ -30,11 +31,12 @@ Hit Triangle::get_intersection(Ray &ray) {
 
     if (is_inside(p)) {
         //std::cout << "------IT DOES!    t = " << t << std::endl;
+        //std::cout << "::TOUCH!" << std::endl;
         Hit hit = Hit(t, this);
         return hit;
     }
     //std::cout << "------IT DOES NOT!    t = MAX" << std::endl;
-    return Hit(-100, this);
+    return Hit(std::numeric_limits<double>::max(), NULL);
 
 }
 

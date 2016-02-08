@@ -36,9 +36,9 @@ Color Scene::touch(Ray &ray) {
 //            if (hit == NULL)
 //                colour = Color(0, 0, 0);
 
-//            //std::cout << ":::: t_i = " << t_i << std::endl;
+            //std::cout << ":::: t_i = " << hit.distance << std::endl;
 
-            if(hit.distance > 0 && hit.distance < t) {
+            if(hit.distance > 0 && hit.distance < t && hit.face != NULL) {
                 t = hit.distance;
                 face = hit.face;
                 material = &obj.material;
@@ -54,13 +54,30 @@ Color Scene::touch(Ray &ray) {
     if (!did_hit)
         return background;
 
-    return process_lights(*material);
+    return process_lights(*material, ray.origin + t * ray.getVector(), face->get_normal());
 }
 
-Color Scene::process_lights(Material &material) {
-    Color c;
-    for (Light &l : lights) {
-        c = l * material;
+Color Scene::process_lights(Material &material, Point intersection, Vector n) {
+    Color c (1, 1, 1);
+    for (Light &light : lights) {
+        //c = light * material;
+        Vector l = (light.position - intersection).normalize();
+        Vector v = (camera.origin - intersection).normalize();
+        Vector r = (2 * (l * n))*n - l;
+
+        Color Ia(light.color.r * material.ambient.r,
+                 light.color.g * material.ambient.g,
+                 light.color.b * material.ambient.b);
+
+        Color Id = Color(light.color.r * material.diffuse.r,
+                         light.color.g * material.diffuse.g,
+                         light.color.b * material.diffuse.b) * (n*l);
+
+        Color Is = Color(light.color.r * material.specular.r,
+                         light.color.g * material.specular.g,
+                         light.color.b * material.specular.b) * pow(r*v, material.shininess);
+
+        c = c * (Ia + Id + Is);
     }
 
     return c;

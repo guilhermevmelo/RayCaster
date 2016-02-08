@@ -39,3 +39,7 @@ Color operator*(double escalar, const Color &c) {
   color.sanitize();
   return color;
 }
+
+Color operator*(const Color &c, double scalar) {
+  return scalar * c;
+}

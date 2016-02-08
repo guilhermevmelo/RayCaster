@@ -30,6 +30,7 @@ class Vector {
 Vector operator+(const Vector &left, const Vector &right);
 Vector operator-(const Vector &left, const Vector &right);
 
+
 Point operator+(const Point &point, const Vector &vector);
 Point operator+(const Vector &vector, const Point &point);
 Vector operator-(const Vector &vector, const Point &point);
