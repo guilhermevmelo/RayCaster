@@ -50,3 +50,5 @@ HEADERS  += mainwindow.h \
     Cube.h
 
 FORMS    += mainwindow.ui
+
+CONFIG += c++11
