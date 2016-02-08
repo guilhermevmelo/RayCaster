@@ -1,4 +1,7 @@
 #include "Matrix.h"
+#include <iostream>
+
+using namespace std;
 
 Matrix::~Matrix() { }
 
@@ -53,6 +56,13 @@ Matrix Matrix::camera_world(Camera &camera) {
     return matriz;
 }
 
+double Matrix::det() {
+    double determinant = 0;
+    for(int i = 0; i<3; i++)
+          determinant = determinant + (elements[0][i]*(elements[1][(i+1)%3]*elements[2][(i+2)%3] - elements[1][(i+2)%3]*elements[2][(i+1)%3]));
+    return determinant;
+}
+
 Vector operator*(const Matrix &left, const Vector &right) {
     Vector result;
 
@@ -73,4 +83,15 @@ Point operator*(const Matrix &left, const Point &right) {
     result(3) = left(3, 0) * right(0) + left(3, 1) * right(1) + left(3, 2) * right(2) + left(3, 3) * right(3);
 
     return result;
+}
+
+ostream & operator<<(ostream & out, const Matrix &matrix) {
+
+    for(int i = 0; i < 4; i++){
+        for(int j = 0; j < 4; j++) {
+            out << matrix(i, j) << " ";
+        }
+        out << endl;
+    }
+    return out;
 }

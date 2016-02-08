@@ -23,11 +23,14 @@ public:
       return elements[line][column];
     };
 
+    double det();
+
 private:
     double elements[4][4];
 };
 
 Vector operator*(const Matrix &left, const Vector &right);
 Point operator*(const Matrix &left, const Point &right);
+std::ostream& operator<<(std::ostream& out, const Matrix &matrix);
 
 #endif /* defined(____Matriz__) */
