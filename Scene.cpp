@@ -32,11 +32,6 @@ Color Scene::touch(Ray &ray) {
 
             Hit hit = f.get_intersection(ray);
 
-//            if (hit == NULL)
-//                colour = Color(0, 0, 0);
-
-            //std::cout << ":::: t_i = " << hit.distance << std::endl;
-
             if(hit.distance > 0 && hit.distance < t && hit.face != NULL) {
                 t = hit.distance;
                 face = hit.face;
@@ -53,11 +48,12 @@ Color Scene::touch(Ray &ray) {
     if (!did_hit)
         return background;
 
-    return process_lights(*material, ray.origin + t * ray.getVector(), face->get_normal());
+    return process_lights(*material, ray.origin + t * ray.vector, face->normal);
 }
 
 Color Scene::process_lights(Material &material, Point intersection, Vector n) {
     Color c (1, 1, 1);
+
     for (Light &light : lights) {
         //c = light * material;
         Vector l = (light.position - intersection).normalize();
@@ -78,6 +74,5 @@ Color Scene::process_lights(Material &material, Point intersection, Vector n) {
 
         c = c * (Ia + Id + Is);
     }
-
     return c;
 }

@@ -1,5 +1,6 @@
 #include "Triangle.h"
 #include <limits>
+#include <math.h>
 #include <cstdlib>
 
 Triangle::Triangle(Point &a, Point &b, Point &c) {
@@ -8,38 +9,58 @@ Triangle::Triangle(Point &a, Point &b, Point &c) {
     points[2] = c;
 
     normal = (a - c) | (b - c);
-
     normal = normal.normalize();
 
     //std::cout <<  "DEBUG: Triangle::Triangle(); " << std::endl << "normal = " << normal << std::endl;
 }
 
 Hit Triangle::get_intersection(Ray &ray) {
-    //std::cout << "::DEBUG: Triangle::get_intersection(); " << std::endl;
-    //std::cout << "  (" << ray.origin * normal << " + " << get_plane_distance() << ") / ((" << ray.getVector() << ") * " << normal << ")" << std::endl;
 
-    // Se o produto escalar for 0, o raio eh paralelo à face
-    if (ray.getVector() * normal == 0)
+    if (fabs(ray.vector * normal) < 0.00001)
         return Hit(std::numeric_limits<double>::max(), NULL);
 
-    double t = - ((ray.origin * normal) + get_plane_distance())/(ray.vector * normal);
-    //double t = - ((normal * (ray.origin - points[0])) / (normal * ray.vector));
+    double d = normal * points[2];
 
-    //std::cout << "  t = " << t << std::endl;
-    //std::cout << "  We found the intersection with the plane, now let's see if it touches the face." << std::endl;
+    double t = -(normal * ray.origin + d) / (ray.vector * normal);
+
+    if(t < 0) {
+        return Hit(std::numeric_limits<double>::max(), NULL);
+    }
 
     Point p = ray.origin + t * ray.vector.normalize();
-    //std::cout << ray.getVector() << " :: " << p <<  std::endl;
+    //std::cout << ray.vector << " :: " << p <<  std::endl;
 
-    if (is_inside(p)) {
-        //std::cout << "------IT DOES!    t = " << t << std::endl;
-        //std::cout << "::TOUCH!" << std::endl;
-        Hit hit = Hit(t, this);
-        return hit;
+    Vector edge1 = points[0] - points[2];
+    Vector vp1 = p - points[2];
+
+    Vector C1 = edge1 | vp1;
+
+    if(normal * C1 < 0) {
+        return Hit(std::numeric_limits<double>::max(), NULL);
     }
-    //std::cout << "------IT DOES NOT!    t = MAX" << std::endl;
-    return Hit(std::numeric_limits<double>::max(), NULL);
 
+    Vector edge2 = points[1] - points[0];
+    Vector vp2 = p - points[0];
+
+    Vector C2 = edge2 | vp2;
+
+    if(normal * C2 < 0) {
+        return Hit(std::numeric_limits<double>::max(), NULL);
+    }
+
+    Vector edge3 = points[2] - points[1];
+    Vector vp3 = p - points[1];
+
+    Vector C3 = edge3 | vp3;
+
+    if(normal * C3 < 0) {
+        return Hit(std::numeric_limits<double>::max(), NULL);
+    }
+
+    //std::cout << "------IT DOES!    t = " << t << std::endl;
+    //std::cout << "::TOUCH!" << std::endl;
+    Hit hit = Hit(t, this);
+    return hit;
 }
 
 Vector Triangle::get_normal() {
@@ -75,13 +96,14 @@ bool Triangle::is_inside(Point &p) {
 }
 
 void Triangle::applyTransformation(Matrix &matrix) {
+
+    std::cout << "Antes: " << points[0] << " " << points[1] << " " << points[2] << std::endl;
     points[0] = matrix * points[0];
     points[1] = matrix * points[1];
     points[2] = matrix * points[2];
 
-    std::cout << points[0] << std::endl;
-    std::cout << points[1] << std::endl;
-    std::cout << points[2] << std::endl;
+    std::cout<< "Depois: " << points[0] << " " << points[1] << " " << points[2] << std::endl;
+
     std::cout << "#####" << std::endl;
 }
 //    if SameSide(p,a, b,c) and SameSide(p,b, a,c)

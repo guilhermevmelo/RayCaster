@@ -12,6 +12,7 @@ Camera::Camera(Point &origin, Point &lookAt, Point &up) : origin(origin), lookAt
 
 Ray Camera::createRay(const Point &direction) {
     //std::cout << "DEBUG: the ray was created" << std::endl;
-    Point camera_origin(0,0,0);
-    return Ray(camera_origin, direction);
+    //Point camera_origin(0,0,0);
+    //return Ray(camera_origin, direction);
+    return Ray(origin, direction);
 }

@@ -14,18 +14,18 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow) {
     ui->setupUi(this);
     int W = 600;
-    int H = 400;
+    int H = 600;
 
-    Point eye = Point(0.0, 0.0, 100.0);
+    Point eye = Point(15, 5, 15);
     Point lookAt = Point(0.0, 0.0, 0.0);
-    Point up = Point(0.00, 100.0, 0.0);
+    Point up = Point(0.0, 100.0, 0.0);
     Camera camera = Camera(eye, lookAt, up);
 
     Matrix WtoC = Matrix::world_camera(camera);
     Matrix CtoW = Matrix::camera_world(camera);
 
-    Window frame = Window(60, 40, 60, 40, 35);
-    Scene scene = Scene(camera, Color(1, 1, 1)
+    Window frame = Window(60, 40, 60, 40, 5);
+    Scene scene = Scene(camera, Color(1, 1, 1));
 
     Light ambient = Light(Point(100, 100, 100), Color(0.5, 0.5, 0.5));
     scene.addLight(ambient);
@@ -34,7 +34,6 @@ MainWindow::MainWindow(QWidget *parent) :
     Point p2 = Point(0, 10, 0);
     Point p3 = Point(0, 0, 10);
     Point p4 = Point(5, 5, 5);
-
 
     Color ks(0.8, 0.3, 0.2), ka(0.8, 0.3, 0.2), kd(0.8, 0.3, 0.2);
     Material material1 = Material(ks, ka, kd, 2);
@@ -50,12 +49,12 @@ MainWindow::MainWindow(QWidget *parent) :
     obj1.addTriangle(f4);
 
     obj1.applyTransformation(WtoC);
-    //scene.addObject(obj1);
+    scene.addObject(obj1);
 
-    Material m2 = Material(ks, ka, kd, 2);
-    Cube c1 = Cube(Point(5, 0, 0), 1, 1, 1, m2);
-    c1.applyTransformation(WtoC);
-    scene.addObject(c1);
+//    Material m2 = Material(ks, ka, kd, 2);
+//    Cube c1 = Cube(Point(5, 0, 0), 1, 1, 1, m2);
+//    c1.applyTransformation(WtoC);
+    //scene.addObject(c1);
 
     //std::cout << f1.get_plane_distance() << std::endl;
 
@@ -66,22 +65,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     for (int i = 0; i < W; i++) {
         for (int j = 0; j < H; j++) {
-//            int r = i % 256;
-//            int g = j % 256;
-//            int b = (int)sqrt((double)i*i+(double)j*j)%256;
-
-            //std::cout << "\nWe are now evaluating the colour of pixel: i = " << i << ", j = " << j << std::endl;
-
             Ray ray = camera.createRay(frame.calculateXYZ(i, j));
             //std::cout << "We have the ray, let's see if it hits" << std::endl;
+
             Color color = scene.touch(ray);
             //std::cout << "Now let's colour that pixel" << std::endl;
 
-            QRgb qtRGB = qRgb(color.r*255, color.g*255, color.b*255);
+            QRgb qtRGB = qRgb(color.r * 255, color.g * 255, color.b * 255);
 
             //QRgb qtRGB = qRgb(r, g, b);
             image.setPixel(i, j, qtRGB);
-
         }
     }
 
