@@ -38,6 +38,7 @@ Color Scene::touch(Ray &ray) {
                 material = &obj.material;
                 did_hit = true;
                 num_hits++;
+                std::cout << "TOUCH!" << std::endl;
             }
         }
         //std::cout << "\n EXITED OBJECT with face = " << face << " and material = " << material << std::endl;
@@ -48,17 +49,24 @@ Color Scene::touch(Ray &ray) {
     if (!did_hit)
         return background;
 
-    return process_lights(*material, ray.origin + t * ray.vector, face->normal);
+    return Color(0,0,0);//process_lights(*material, ray.origin + (t * ray.vector), face->normal);
 }
 
 Color Scene::process_lights(Material &material, Point intersection, Vector n) {
-    Color c (1, 1, 1);
-
+    Color c(1, 1, 1);
+    std::cout << "process_lights()" << std::endl;
     for (Light &light : lights) {
         //c = light * material;
         Vector l = (light.position - intersection).normalize();
+        std::cout << "depois do l" << l << std::endl;
         Vector v = (camera.origin - intersection).normalize();
-        Vector r = (2 * (l * n))*n - l;
+        std::cout << "depois do v" << v << std::endl;
+        double aux = l*n;
+        aux = 2*aux;
+        std::cout << "l*n" << aux << std::endl;
+        Vector r = aux*n - l;
+
+        std::cout << "l: " <<  l << " v: " << v << " r: " << r << std::endl;
 
         Color Ia(light.color.r * material.ambient.r,
                  light.color.g * material.ambient.g,

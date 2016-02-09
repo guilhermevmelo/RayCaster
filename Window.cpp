@@ -9,6 +9,8 @@ Point Window::calculateXYZ(double i, double j) {
     double deltaX = imageWidth / frameWidth;
     double deltaY = imageHeight / frameHeight;
 
+    //std::cout << deltaX << " " << deltaY << std::endl;
+
     double x = -(imageWidth/2.0) + (deltaX/2.0) + (deltaX * j);
     double y = ((imageHeight/2.0) - (deltaY/2.0)) - (deltaY * i);
     double z = -distance;

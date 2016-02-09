@@ -8,7 +8,7 @@ Triangle::Triangle(Point &a, Point &b, Point &c) {
     points[1] = b;
     points[2] = c;
 
-    normal = (a - c) | (b - c);
+    normal = (b - a) | (c - a);
     normal = normal.normalize();
 
     //std::cout <<  "DEBUG: Triangle::Triangle(); " << std::endl << "normal = " << normal << std::endl;
@@ -16,13 +16,17 @@ Triangle::Triangle(Point &a, Point &b, Point &c) {
 
 Hit Triangle::get_intersection(Ray &ray) {
 
-    if (fabs(ray.vector * normal) < 0.00001)
+    // Verifica se o raio e o plano sao paralelos
+    if (fabs(ray.vector * normal) < 0.0000001)
         return Hit(std::numeric_limits<double>::max(), NULL);
 
-    double d = normal * points[2];
+    double d = normal * points[0];
 
-    double t = -(normal * ray.origin + d) / (ray.vector * normal);
 
+    // tinha um - aqui
+    double t = (normal * ray.origin + d) / (ray.vector * normal);
+
+    // se t < 0 o  triangulo está atrás
     if(t < 0) {
         return Hit(std::numeric_limits<double>::max(), NULL);
     }
@@ -30,8 +34,8 @@ Hit Triangle::get_intersection(Ray &ray) {
     Point p = ray.origin + t * ray.vector.normalize();
     //std::cout << ray.vector << " :: " << p <<  std::endl;
 
-    Vector edge1 = points[0] - points[2];
-    Vector vp1 = p - points[2];
+    Vector edge1 = points[1] - points[0];
+    Vector vp1 = p - points[0];
 
     Vector C1 = edge1 | vp1;
 
@@ -39,8 +43,8 @@ Hit Triangle::get_intersection(Ray &ray) {
         return Hit(std::numeric_limits<double>::max(), NULL);
     }
 
-    Vector edge2 = points[1] - points[0];
-    Vector vp2 = p - points[0];
+    Vector edge2 = points[2] - points[1];
+    Vector vp2 = p - points[1];
 
     Vector C2 = edge2 | vp2;
 
@@ -48,8 +52,8 @@ Hit Triangle::get_intersection(Ray &ray) {
         return Hit(std::numeric_limits<double>::max(), NULL);
     }
 
-    Vector edge3 = points[2] - points[1];
-    Vector vp3 = p - points[1];
+    Vector edge3 = points[0] - points[2];
+    Vector vp3 = p - points[2];
 
     Vector C3 = edge3 | vp3;
 
